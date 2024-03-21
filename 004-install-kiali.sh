@@ -1,3 +1,4 @@
+cd istio-1.12.9
 kubectl apply -f samples/addons 
 kubectl rollout status deployment/kiali -n istio-system
 sleep 10
