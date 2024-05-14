@@ -1,4 +1,7 @@
+echo "#### 1.下载 ###"
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.12.9 TARGET_ARCH=x86_64 sh -
+
+echo "#### 2.进入目录 ###"
 cd istio-1.12.9
 
 export PATH=$PWD/bin:$PATH
