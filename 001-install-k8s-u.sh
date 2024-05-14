@@ -16,8 +16,6 @@ sudo docker version
 
 sudo systemctl status docker
 
-sudo docker run hello-world
-
 echo "******5.依赖 ******"
 sudo apt-get install -y apt-transport-https
 
