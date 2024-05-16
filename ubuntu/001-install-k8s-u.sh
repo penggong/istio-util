@@ -16,8 +16,6 @@ sudo docker version
 
 sudo systemctl status docker
 
-sudo docker run hello-world
-
 echo "******5.依赖 ******"
 sudo apt-get install -y apt-transport-https
 
@@ -34,12 +32,15 @@ echo "******7.安装kubectl ******"
 sudo apt-get install -y kubectl
 
 #添加用户到docker组
+echo "******7.1 添加用户到docker组 ******"
 sudo usermod -aG docker $USER && newgrp docker
 
 echo "******8.安装conntrack ******"
 sudo apt-get install conntrack
 
 echo "******9.下载安装k8s ******"
-curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.25.2/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.25.2/minikube-linux-amd64
+chmod +x minikube && sudo mv minikube /usr/local/bin/
 
+echo "******10 启动******"
 minikube start --image-mirror-country=cn --driver=none
