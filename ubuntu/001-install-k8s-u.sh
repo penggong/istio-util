@@ -6,14 +6,16 @@ echo "******2.添加阿里云GPG秘钥 ******"
 curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 
 echo "******3.设置存储库 ******"
-sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+#sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+#指定jammy， tencent ubuntu22能获取成功，24获取“noble: command not found”
+sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu jammy stable"
+
 
 echo "******4.安装docker ******"
 sudo apt-get update
 
-#ubuntu22 需要指定版本号，24版本不需要
-#sudo apt-get install docker-ce=5:20.10.13~3-0~ubuntu-jammy docker-ce-cli=5:20.10.13~3-0~ubuntu-jammy containerd.io docker-compose-plugin
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+#k8s 1.25 要求docker最高版本20.10
+sudo apt-get install docker-ce=5:20.10.13~3-0~ubuntu-jammy docker-ce-cli=5:20.10.13~3-0~ubuntu-jammy containerd.io docker-compose-plugin
 
 sudo docker version
 
