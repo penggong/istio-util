@@ -1,20 +1,20 @@
 #!/bin/bash
 PORT=1
+// k8s_details1
+process_info=$1
 
 get_port(){
-  docker_id=`docker ps -a |grep k8s_details1`
-  PORT=`echo $docker_id |cut -b 1-12`
-  PORT=`docker inspect -f '{{.State.Pid}}' $PORT`
-}
-get_port1(){
 
-  port_info=`ps -ef|grep demo|grep -v grep`
-  var=$port_info
-  PORT=`echo $var |cut -b 6-11`
+  docker_info=`docker ps -a |grep $process_info`
+  docker_id=`echo $docker_info |cut -b 1-12`
+  docker_pid=`docker inspect -f '{{.State.Pid}}' $docker_id`
+  
+  javapidInfo=`ps -ef|grep $docker_pid|grep jar`
+  PORT=`echo $javapidInfo |cut -b 6-10`
   echo $PORT
 
-
 }
+
 get_port
 getrun(){
  out=`/usr/share/bcc/tools/runqlat -p $PORT 1 1 |grep -F ">" |tail -n 1`
