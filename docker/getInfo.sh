@@ -1,6 +1,6 @@
 #!/bin/bash
 PORT=1
-// k8s_details1
+#k8s_details1
 process_info=$1
 
 get_port(){
@@ -22,7 +22,7 @@ getrun(){
 }
 
 getmemleak(){
-  out=`/usr/share/bcc/tools/memleak -p $PORT -T 1 1 1 |grep bytes`
+  out=`/usr/share/bcc/tools/memleak -p $PORT -O /lib/x86_64-linux-gnu/libc-2.28.so -T 1 1 1 |grep bytes`
   echo "mem3"
   if [ -z "$out" ];then
      out=0
