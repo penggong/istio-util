@@ -58,5 +58,9 @@ do
     #sleep 1
   else
     echo "0" >> p-status.txt
+    echo "0" >> p-runqlat.txt
+    echo "0" >> p-memleak.txt
+    echo "0" >> p-accept.txt
+    sleep 1
   fi
 done 
