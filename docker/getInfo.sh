@@ -46,6 +46,20 @@ get_accept(){
   fi
 }
 
+get_connect(){
+  bpftrace -e 't:syscalls:sys_enter_connect* { @[pid,comm] = count();}' > connect.txt&
+  sleep 1
+  kill -2 $!
+  sleep 1
+  connect_count=`cat acc.txt|grep $PORT`
+  echo $aaa
+  if [ -n "$connect_count" ];then
+    echo $connect_count >> p-connect.txt
+  else
+    echo "0" >> p-connect.txt
+  fi
+}
+
 while 1>0
 do
   get_port
@@ -55,12 +69,14 @@ do
     getrun
     getmemleak
     get_accept
+    get_connect
     #sleep 1
   else
     echo "0" >> p-status.txt
     echo "0" >> p-runqlat.txt
     echo "0" >> p-memleak.txt
     echo "0" >> p-accept.txt
+    echo "0" >> p-connect.txt
     sleep 1
   fi
 done 
