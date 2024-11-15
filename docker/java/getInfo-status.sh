@@ -11,8 +11,9 @@ get_port(){
   
   javapidInfo=`ps -ef|grep $docker_pid|grep jar`
   PORT=`echo $javapidInfo |cut -b 6-11`
+  echo "cut port:"$PORT
   PORT=`echo $PORT|sed 's/ //g'`
-  echo $PORT
+  echo "get port:"$PORT
 
 }
 
@@ -71,8 +72,9 @@ get_status(){
 
 while 1>0
 do
+  get_port
   time=$(date "+%Y-%m-%d %H:%M:%S")
-  echo "begin time :"$time
+  echo "begin time :"$time $PORT
   if [ -n "$PORT" ];then
     get_status
     sleep 2

@@ -72,6 +72,7 @@ get_status(){
 
 while 1>0
 do
+  get_port
   time=$(date "+%Y-%m-%d %H:%M:%S")
   echo "begin time :"$time
   if [ -n "$PORT" ];then
