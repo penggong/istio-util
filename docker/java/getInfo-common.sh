@@ -4,11 +4,24 @@ get_port(){
   docker_info=`docker ps -a |grep $process_info |grep Up`
   docker_id=`echo $docker_info |cut -b 1-12`
   docker_pid=`docker inspect -f '{{.State.Pid}}' $docker_id`
-
+  
   javapidInfo=`ps -ef|grep $docker_pid|grep jar`
-  PORT=`echo $javapidInfo |cut -b 6-11`
+
+  getmark=0
+  mark=6
+  while [ 1 -gt "$getmark" ]
+  do
+    pid=`echo $javapidInfo |cut -b $mark-$mark`
+    if [ "$pid" = " " ];then
+         getmark=1
+         mark=$(($mark-2))
+    fi
+    mark=$(($mark+1))
+  done
+  PORT=`echo $javapidInfo |cut -b 6-$mark`
+  echo "cut port:"$PORT
   PORT=`echo $PORT|sed 's/ //g'`
-  echo $PORT
+  echo "get port:"$PORT
 
 }
 
