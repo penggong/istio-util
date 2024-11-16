@@ -62,7 +62,7 @@ do
   #5  
     #CPU b  次数3000
   if [ "$rand_no" = "55"  ];then
-     forward_fortio_create 20 $service_a_ip details2 createObjectLimitCount?counttargetApi=3000 50
+     forward_fortio_create 20 $service_a_ip details2 createObjectLimitCount?count=3000 50
      log_print rand_no
   fi
 
