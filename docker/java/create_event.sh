@@ -39,7 +39,7 @@ do
   #2
     # b-c sleep 3s
   if [ "$rand_no" = "22"  ];then
-     forward_fortio_create 20 $service_a_ip details2 forwardToC?targetType=sleep&targetApi=3000 50
+     forward_fortio_create 20 $service_a_ip details2 forwardTo/sleep/3000 50
      log_print rand_no
   fi
 
@@ -55,7 +55,7 @@ do
   #4
   #CPU b-c  次数3000
   if [ "$rand_no" = "44"  ];then
-     forward_fortio_create 20 $service_a_ip details2 forwardToC?targetType=createObjectLimitCount&targetApi=3000 50
+     forward_fortio_create 20 $service_a_ip details2 forwardTo/createObjectLimitCount/3000 50
      log_print rand_no
   fi
 
@@ -69,7 +69,7 @@ do
   #6
   #net a->b-c ya
   if [ "$rand_no" = "66"  ];then
-     forward_fortio_create 20 $service_a_ip details2 forwardToC?targetType=sleep&targetApi=200 500
+     forward_fortio_create 20 $service_a_ip details2 forwardTo/sleep/200 500
      log_print rand_no
   fi
 
