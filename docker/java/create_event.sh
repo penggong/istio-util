@@ -27,62 +27,62 @@ log_print() {
 while 1>0
 do
   rand_create 2
-  echo $rand_no
+  echo $random_value
 
   #1
   # b sleep
-  if [ "$rand_no" = "11"  ];then
+  if [ "$random_value" = "11"  ];then
      forward_fortio_create 20 $service_a_ip details2 sleepGet?time=5000 50
-     log_print rand_no
+     log_print random_value
   fi
 
   #2
     # b-c sleep 3s
-  if [ "$rand_no" = "22"  ];then
+  if [ "$random_value" = "22"  ];then
      forward_fortio_create 20 $service_a_ip details2 forwardTo/sleep/3000 50
-     log_print rand_no
+     log_print random_value
   fi
 
   #3
   # oom增长,b和c同时增长
-  if [ "$rand_no" = "33"  ];then
+  if [ "$random_value" = "33"  ];then
      forward_oom $service_a_ip details2 2 &
      forward_oom $service_b_ip details3 3 &
      sleep 20s
-     log_print rand_no
+     log_print random_value
   fi
 
   #4
   #CPU b-c  次数3000
-  if [ "$rand_no" = "44"  ];then
+  if [ "$random_value" = "44"  ];then
      forward_fortio_create 20 $service_a_ip details2 forwardTo/createObjectLimitCount/3000 50
-     log_print rand_no
+     log_print random_value
   fi
 
   #5  
     #CPU b  次数3000
-  if [ "$rand_no" = "55"  ];then
+  if [ "$random_value" = "55"  ];then
      forward_fortio_create 20 $service_a_ip details2 createObjectLimitCount?count=3000 50
-     log_print rand_no
+     log_print random_value
   fi
 
   #6
   #net a->b-c ya
-  if [ "$rand_no" = "66"  ];then
+  if [ "$random_value" = "66"  ];then
      forward_fortio_create 20 $service_a_ip details2 forwardTo/sleep/200 500
-     log_print rand_no
+     log_print random_value
   fi
 
   #7
   #net b-C ya
-  if [ "$rand_no" = "77"  ];then
+  if [ "$random_value" = "77"  ];then
      forward_fortio_create 20 $service_b_ip details3 sleep?time=200 500
-     log_print rand_no
+     log_print random_value
   fi
 
   #8
   #配置错误
-  if [ "$rand_no" = "88"  ];then
+  if [ "$random_value" = "88"  ];then
      #
      echo "error"
   fi
