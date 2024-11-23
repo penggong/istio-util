@@ -84,6 +84,7 @@ do
   #配置错误
   if [ "$rand_no" = "88"  ];then
      #
+     echo "error"
   fi
 
 done
